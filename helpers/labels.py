@@ -145,7 +145,7 @@ InputLayoutElements.create_node("SubCategory", "SpaceContainedElement", parent='
 InputLayoutElements.create_node("SubSubCategory", "CirculationElement", parent='SpaceContainedElement',
                                 data = segmentation_data())
 InputLayoutElements.create_node("SpaceElementClass", "FlightOfStairs", parent='CirculationElement',
-                                data = segmentation_data(3,'(0, 0, 0)'))
+                                data = segmentation_data(3,'(230, 184, 175)'))
 InputLayoutElements.create_node("SpaceElementClass", "Landing", parent='CirculationElement',
                                 data = segmentation_data(4,'(102, 1, 30)'))
 
