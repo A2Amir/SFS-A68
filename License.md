@@ -1,3 +1,15 @@
+name='SFSA-68'
+version='0.1.0'  
+description='SFS-A68: a dataset for the segmentation of space functions in apartment buildings'
+url='https://github.com/A2Amir/SFS-A68'
+author='Amir Ziaee, Georg Suter'
+author_email='amir.ziaee@tuwien.ac.at'
+icense="Free For Educational Use"
+packages=['SFS-A68']
+install_requires=['environment.yml']
+
+
+
 GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
 
@@ -5,9 +17,9 @@ GNU GENERAL PUBLIC LICENSE
  Everyone is permitted to copy and distribute verbatim copies
  of this license document, but changing it is not allowed.
 
-                            Preamble
-
-  The GNU General Public License is a free, copyleft license for
+                            
+Preamble
+The GNU General Public License is a free, copyleft license for
 software and other kinds of works.
 
   The licenses for most software and other practical works are designed
@@ -672,3 +684,4 @@ may consider it more useful to permit linking proprietary applications with
 the library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.  But first, please read
 <https://www.gnu.org/licenses/why-not-lgpl.html>.
+
