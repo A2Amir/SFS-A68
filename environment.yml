@@ -186,4 +186,3 @@ dependencies:
     - wcwidth==0.2.5
     - webencodings==0.5.1
     - widgetsnbextension==3.5.2
-prefix: C:\Users\Rima\.conda\envs\SFS-A68
