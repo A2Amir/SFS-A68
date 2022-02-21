@@ -1,6 +1,6 @@
 
 
-## SFS-A68 (A dataset for the segmentation of space functions in apartment buildings)
+## [SFS-A68](https://github.com/A2Amir/SFS-A68/tree/main/data)(A dataset for the segmentation of space functions in apartment buildings)
  
 
 
