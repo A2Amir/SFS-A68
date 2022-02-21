@@ -40,7 +40,7 @@ Each pixel in a ground truth image is assigned to a space function class. Space 
     └── [SpaceElement]
         ├── [SpaceContainedElement]
         │   ├── [CirculationElement]
-        │   │   ├── (0, 0, 0)[FlightOfStairs]
+        │   │   ├── (230, 184, 175)[FlightOfStairs]
         │   │   └── (102, 1, 30)[Landing]
         │   ├── [FurnishingElement]
         │   │   ├── (253, 223, 162)[KitchenElement]
