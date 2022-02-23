@@ -56,7 +56,7 @@ Each pixel in a ground truth image is assigned to a space function class. Space 
       </code></pre>
     </td>
     <td>
-     <pre><code class="lang-txt">
+     <pre><code class="lang-txt" width=60 height=450>
      [Space]
      ├── [ResidentialSpace]
      │   ├── [CommunalSpace]
