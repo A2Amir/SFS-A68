@@ -1,23 +1,6 @@
-#### Name='SFSA-68'
-
-#### Version='0.1.0'  
-
-#### Description='SFS-A68: a dataset for the segmentation of space functions in apartment buildings'
-
-#### Url='https://github.com/A2Amir/SFS-A68'
-
-#### Author='Amir Ziaee, Georg Suter'
-
-
-#### Author_email='amir.ziaee@tuwien.ac.at'
-
-#### Packages=['SFS-A68']
-
-#### Install_requires=['environment.yml']
-
-#### GNU GENERAL PUBLIC LICENSE
+GNU GENERAL PUBLIC LICENSE
                        
-                       Version 3, 29 June 2007
+Version 3, 29 June 2007
 
  Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
  Everyone is permitted to copy and distribute verbatim copies
