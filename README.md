@@ -20,7 +20,7 @@ Analyzing building models for quantity takeoff, building safety, or energy analy
  </table>
 
 
-Each pixel in a ground truth image is assigned to a space function class. Space function classes in apartment buildings that are classified by the space function segmentation network are shown in Table below, right column.  We have identified 22 space function classes for the apartment buildings in our dataset. Each layout element in an input image is colored according to a unique class color (Table below, left column). Space element classes may be helpful as metadata to determine space function classes. The defined class hierarchy of the dataset with the unique RGB color code  of each class can be seen below.
+Each pixel in a ground truth image is assigned to a space function class. Space function classes in apartment buildings that are classified by the space function segmentation network are shown in Table below, right column.  We have identified **22 space function classes** for the apartment buildings in our dataset. Each layout element in an input image is colored according to a unique class color (Table below, left column). Space element classes may be helpful as metadata to determine space function classes. The defined class hierarchy of the dataset with the unique RGB color code  of each class can be seen below.
 
 <table border="0" align="center"  width="50" >
  <tr>
@@ -104,5 +104,5 @@ To create the environment from the environment.yml file to use the helper codes
 ### 3. Dataset and Processing:
 
 
-We first used the dataset to develop two segmentation models based on [transfer learning]() and [training from scratch]() then, the outputs of the space function segmentation models for the test dataset are evaluated by Intersection over Union (IoU) and mean Intersection over Union (mIoU) metrics. 
+We first used the dataset to develop two segmentation models based on [transfer learning](https://github.com/A2Amir/SFS-A68/blob/main/VGG16%20U-Net%20(Transfer%20Learning).ipynb) and [training from scratch](https://github.com/A2Amir/SFS-A68/blob/main/Training%20U-Net%20From%20Scratch.ipynb) then, the outputs of the space function segmentation models for the test dataset are evaluated by Intersection over Union (IoU) and mean Intersection over Union (mIoU) metrics. 
 
