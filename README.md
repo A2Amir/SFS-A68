@@ -94,7 +94,15 @@ Each pixel in a ground truth image is assigned to a space function class. Space 
  </tr>
 </table>
 
+### 2. Prerequisites
+
+To create the environment from the environment.yml file to use the helper codes 
+
+        conda env create -f environment.yml
 
 
-### 2. Dataset and Processing:
+### 3. Dataset and Processing:
+
+
+We first used the dataset to develop two segmentation models based on [transfer learning]() and [training from scratch]() then, the outputs of the space function segmentation models for the test dataset are evaluated by Intersection over Union (IoU) and mean Intersection over Union (mIoU) metrics. 
 
