@@ -100,7 +100,13 @@ To create the environment from the environment.yml file to use the helper codes
 
         conda env create -f environment.yml
 
+Activate the new environment: 
 
+        conda activate SFS-A68
+Verify that the new environment was installed correctly
+
+        conda env list
+        
 ### 3. Dataset and Processing:
 
 
