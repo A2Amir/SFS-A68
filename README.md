@@ -22,14 +22,14 @@ Analyzing building models for quantity takeoff, building safety, or energy analy
 
 Each pixel in a ground truth image is assigned to a space function class. Space function classes in apartment buildings that are classified by the space function segmentation network are shown in Table below, right column.  We have identified 22 space function classes for the apartment buildings in our dataset. Each layout element in an input image is colored according to a unique class color (Table below, left column). Space element classes may be helpful as metadata to determine space function classes. The defined class hierarchy of the dataset with the unique RGB color code  of each class can be seen below.
 
-<table border="0" align="center"  >
+<table border="0" align="center"  width="50" >
  <tr>
     <td><b style="font-size:30px">Layout element classes</b></td>
     <td><b style="font-size:30px">Space function classes</b></td>
  </tr>
  <tr >
   <td>
-   <pre ><code class="lang-txt"  width="50">
+   <pre ><code class="lang-txt" >
     [root]
     ├── [Space]
     │   ├── (102,102,122)[InternalSpace]
