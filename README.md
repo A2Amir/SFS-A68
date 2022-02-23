@@ -29,7 +29,7 @@ Each pixel in a ground truth image is assigned to a space function class. Space 
  </tr>
  <tr >
   <td>
-   <pre ><code class="lang-txt"  width=60 height=450>
+   <pre ><code class="lang-txt"  white-space="pre-wrap";>
     [root]
     ├── [Space]
     │   ├── (102,102,122)[InternalSpace]
