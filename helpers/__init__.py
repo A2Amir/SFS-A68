@@ -9,7 +9,7 @@ SFS-A68: a dataset for the segmentation of space functions in apartment building
 
 __author__ = "Amir Ziaee, Georg Suter, Mihael Barada"
 __copyright__ = "Design Computing Group TU Wien, 2022"
-__credits__ = ["Design Computing Group TU Wien"]
+__credits__ = "Design Computing Group TU Wien"
 __license__ = "GNU GENERAL PUBLIC LICENSE Version 3"
 __version__ = "1.0.1"
 __maintainer__ = "Amir Ziaee"
