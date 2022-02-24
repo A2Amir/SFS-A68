@@ -1,5 +1,9 @@
+
+<p style="text-align:center">
+  
 ### [SFS-A68: A dataset for the segmentation of space functions in apartment buildings]()
 
+</p>
 
 ### 1. Introduction:
 
