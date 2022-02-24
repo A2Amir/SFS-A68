@@ -21,7 +21,7 @@ __Url__= "https://github.com/A2Amir/SFS-A68"
 print('# ' + '=' * 78)
 print('Author: ' + __author__)
 print('Copyright: ' + __copyright__)
-print('Credits: ' + ', '.join(__credits__))
+print('Credits: ' +  __credits__)
 print('License: ' + __license__)
 print('Version: ' + __version__)
 print('Maintainer: ' + __maintainer__)
