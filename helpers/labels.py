@@ -118,7 +118,7 @@ GroundTruthLayoutElements.create_node("Category", "ExternalSpace", parent='Space
 GroundTruthLayoutElements.create_node("SpaceFunctionClass", "AccessBalcony", parent='ExternalSpace',
                                       data = segmentation_data(21,'(255, 255, 22)'))
 GroundTruthLayoutElements.create_node("SpaceFunctionClass", "Loggia", parent='ExternalSpace',
-                                      data = segmentation_data(22,'(121, 56, 145)'))
+                                      data = segmentation_data(22,'(120, 56, 145)'))
 
 
 # In[399]:

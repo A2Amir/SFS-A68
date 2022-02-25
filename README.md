@@ -91,7 +91,7 @@ Each pixel in a ground truth image is assigned to a space function class. Space 
      │           └── (155, 94, 65)[InternalHallway]
      └── [ExternalSpace]
          ├── (255, 255, 22)[AccessBalcony]
-         └── (121, 56, 145)[Loggia]
+         └── (120, 56, 145)[Loggia]
    </code></pre>
   </td>
  </tr>
