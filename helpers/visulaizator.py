@@ -14,19 +14,19 @@ import os
 
 def visulaize_inp_pred_gt(inp_img, prediction, ground_truth,
                           img_height, img_width,
-                          seg_classes, batch_n,
-                          pred_path, save):
+                          seg_classes, pred_path,
+                          name, save):
     
     """
      To visulaize input, ground truth and prediction based their colors
      
      Input
-         inp_img: (batch, h, w, 3)
-         prediction: (batch, h, w, number of space function classes)
-         ground_truth: (batch, h, w, number of space function classes)
+         inp_img: (h, w, 3)
+         prediction: (h, w, number of space function classes)
+         ground_truth: (h, w, number of space function classes)
          seg_classes: Space Function Classes 
-         batch_n: batch number to visualize
          pred_path: path to save prediction
+          name: name to visualize
          save: "True" means saving outputs in a RGB image and in channel format, "False" mean dont save.
               
 
@@ -46,7 +46,7 @@ def visulaize_inp_pred_gt(inp_img, prediction, ground_truth,
         gr_truth_ch = np.zeros((img_height, img_width,1), dtype=np.uint8)
 
         # Threshold image to binary
-        pred_image = prediction [batch_n][:,:,item.id-1]
+        pred_image = prediction [:,:,item.id-1]
         pred_thresh = threshold_otsu(pred_image)
         pred_binary = pred_image > pred_thresh
         pred_rgb[pred_binary]  = eval(item.color)
@@ -54,7 +54,7 @@ def visulaize_inp_pred_gt(inp_img, prediction, ground_truth,
         pred_ch[pred_binary]  = 1
         pred_chs.append(pred_ch)
 
-        gt_image = np.array(ground_truth[batch_n][:,:,item.id-1])
+        gt_image = np.array(ground_truth[:,:,item.id-1])
         gt_thresh = threshold_otsu(gt_image)
         gt_binary = gt_image > gt_thresh
         gt_rgb[gt_binary]  = eval(item.color)
@@ -64,7 +64,7 @@ def visulaize_inp_pred_gt(inp_img, prediction, ground_truth,
         
     # Display result
     plt.figure(figsize=(18,18))
-    display_list = [inp_img[batch_n,:,:,:]*.5+.5, gt_rgb, pred_rgb]
+    display_list = [inp_img[:,:,:]*.5+.5, gt_rgb, pred_rgb]
     display_title = ['Input Image', 'Ground Truth', 'Predction']
 
     for i in range(3):
@@ -75,12 +75,12 @@ def visulaize_inp_pred_gt(inp_img, prediction, ground_truth,
     plt.show()
 
     if save:
-        ch_path = pred_path  +'/' +  str(batch_n+1)
+        ch_path = pred_path  +'/' +  name
         if not os.path.exists(ch_path):
             os.makedirs(ch_path)
         
         
-        inp  = (inp_img[batch_n,:,:,:].numpy() * 255).astype(np.uint8)
+        inp  = (inp_img[:,:,:].numpy() * 255).astype(np.uint8)
         gt_rgb = (gt_rgb).astype(np.uint8) 
         pred_rgb = (pred_rgb).astype(np.uint8) 
         save_image = np.hstack((inp ,gt_rgb, pred_rgb))
@@ -88,9 +88,9 @@ def visulaize_inp_pred_gt(inp_img, prediction, ground_truth,
         tf.keras.utils.save_img(ch_path +'/' + 'rgb_input_groundTruth_pred' +'.jpg', save_image)
 
         
-        tf.keras.utils.save_img(ch_path +'/' + 'inp_image' + '.jpg', inp_img[batch_n,:,:,:]*.5+.5)
-        for i in range (len(seg_classes)):
-            plot_image = np.concatenate((ground_truth_chs[i], pred_chs[i]), axis=1)
-            tf.keras.utils.save_img(ch_path +'/' + 'gt_pred_chanel'  + '_' + str(i+1) +'.jpg', plot_image)
+        tf.keras.utils.save_img(ch_path +'/' + 'inp_image' + '.jpg', inp_img[:,:,:]*.5+.5)
+        for k,item in seg_classes.items():
+            plot_image = np.concatenate((ground_truth_chs[item.id-1], pred_chs[item.id-1]), axis=1)
+            tf.keras.utils.save_img(ch_path +'/' + 'gt_pred_chanenl'  + '_' + str(item.id) + '_' + item.name +'.jpg', plot_image)
 
     
