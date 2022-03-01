@@ -98,14 +98,14 @@ Each pixel in a ground truth image is assigned to a space function class. Space 
 </table>
 
 ### 2. Prerequisites
-
-To create the environment from the environment.yml file to use the helper codes 
+In order to use the helper codes, create the environment from the environment.yml file  
 
         conda env create -f environment.yml
 
 Activate the new environment: 
 
         conda activate SFS-A68
+        
 Verify that the new environment was installed correctly
 
         conda env list
