@@ -40,7 +40,7 @@ class segmentation_data(object):
             self.color = color
 
 
-# In[13]:
+## Space function classes
 
 
 
