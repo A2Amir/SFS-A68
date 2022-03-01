@@ -124,7 +124,7 @@ GroundTruthLayoutElements.create_node("SpaceFunctionClass", "Loggia", parent='Ex
 # In[399]:
 
 
-# In[14]:
+### Layout element classes
 
 
 InputLayoutElements = Tree()
