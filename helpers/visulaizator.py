@@ -47,16 +47,16 @@ def visulaize_inp_pred_gt(inp_img, prediction, ground_truth,
 
         # Threshold image to binary
         pred_image = prediction [:,:,item.id-1]
-        pred_thresh = threshold_otsu(pred_image)
-        pred_binary = pred_image > pred_thresh
+        #pred_thresh = threshold_otsu(pred_image)
+        pred_binary = pred_image > 0.5
         pred_rgb[pred_binary]  = eval(item.color)
         
         pred_ch[pred_binary]  = 1
         pred_chs.append(pred_ch)
 
         gt_image = np.array(ground_truth[:,:,item.id-1])
-        gt_thresh = threshold_otsu(gt_image)
-        gt_binary = gt_image > gt_thresh
+        #gt_thresh = threshold_otsu(gt_image)
+        gt_binary = gt_image > 0.5
         gt_rgb[gt_binary]  = eval(item.color)
         
         gr_truth_ch[gt_binary]  = 1
