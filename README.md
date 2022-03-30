@@ -17,8 +17,8 @@ Analyzing building models for quantity takeoff, building safety, or energy analy
      <td>Ground Truth</td>
   </tr>
   <tr>
-    <td><img src="./data/0011/input/0011_input.png" width=320 height=320></td>
-    <td><img src="./data/0011/ground_truth/0011_ground_truth.png" width=320 height=320></td>
+    <td><img src="./data/0030/input/0030_input.png" width=320 height=320></td>
+    <td><img src="./data/0030/ground_truth/0030_ground_truth.png" width=320 height=320></td>
   </tr>
  </table>
 
