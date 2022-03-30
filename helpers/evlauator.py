@@ -2,13 +2,19 @@
 # coding: utf-8
 
 # In[38]:
-
+import tensorflow as tf
 from skimage.filters import threshold_otsu
-from sklearn.metrics import jaccard_score
 import numpy as np
 
+def iou_metric(inputs, target):
+    intersection =  (target * inputs).sum()
+    union = target.sum() + inputs.sum()
+    if target.sum() == 0 and inputs.sum() == 0:
+        return 1.0
+    return intersection / union
 
-def mIoU(prediction, ground_truth):
+
+def mIoU(prediction, ground_truth, threshold = .5):
     
     '''
     Intersection over union as a metric to quantify the quality of semantic segmentation
@@ -17,38 +23,27 @@ def mIoU(prediction, ground_truth):
     
         Mean IoU
         IoU for each class
+        IoUs for each class
     '''
     
     assert (prediction.shape == ground_truth.shape)
     
 
-    labels = [0, 1]
-    Jaccards = []
+    ious_per_class = []
+    iou_per_class = []
+    MIoU = 0.0
 
-    for b in range(prediction.shape[0]):
-        jaccards = []
-        for ch in range(prediction.shape[3]):
+    for i in range(prediction.shape[-1]):
+        ious = []
+        for j in range(prediction.shape[0]):
+            
+            y_prediction = prediction[j,:,:,i]
+            y_true = ground_truth[j,:,:,i]
+            y_pred_class = tf.cast(y_prediction > threshold, tf.float32)
+            ious.append(iou_metric(y_pred_class.numpy(), y_true.numpy()))
 
-            pred_image = prediction [b][:,:,ch]
-            pred_thresh = threshold_otsu(pred_image)
-            pred_binary = pred_image > pred_thresh
-
-
-            gt_image = ground_truth[b][:,:,ch]
-            gt_thresh = threshold_otsu(gt_image)
-            gt_binary = gt_image > gt_thresh
-
-            jaccard = []
-            for label in labels:
-                jaccard.append(jaccard_score(gt_binary.flatten(),pred_binary.flatten(), pos_label=label))
-            jaccards.append(jaccard)
-
-        Jaccards.append(jaccards)
-            #print(pred_binary.shape)
-            #plt.imshow(pred_binary, cmap='gray')
-            #plt.show()
-
-    Jaccards = np.array(Jaccards)
-    miou = np.round(np.mean(Jaccards, axis=2).mean(axis=0).mean(), 2)
-    ious = np.round(np.mean(Jaccards, axis=2).mean(axis=0), 2)
-    return miou,ious
+        ious_per_class.append(np.round(ious,2))
+        iou_per_class.append(np.round(sum(ious)/len(ious),2))
+    MIoU = sum(iou_per_class)/len(iou_per_class)
+    
+    return np.round(MIoU, 2), iou_per_class, ious_per_class
