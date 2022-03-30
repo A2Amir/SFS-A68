@@ -3,18 +3,12 @@
 
 # In[38]:
 import tensorflow as tf
-from skimage.filters import threshold_otsu
 import numpy as np
 
-def iou_metric(inputs, target):
-    intersection =  (target * inputs).sum()
-    union = target.sum() + inputs.sum()
-    if target.sum() == 0 and inputs.sum() == 0:
-        return 1.0
-    return intersection / union
 
 
-def mIoU(prediction, ground_truth, threshold = .5):
+
+def mIoU(prediction, ground_truth, threshold = 0.5, target_class_ids =[0,1]):
     
     '''
     Intersection over union as a metric to quantify the quality of semantic segmentation
@@ -27,23 +21,22 @@ def mIoU(prediction, ground_truth, threshold = .5):
     '''
     
     assert (prediction.shape == ground_truth.shape)
-    
+
 
     ious_per_class = []
     iou_per_class = []
     MIoU = 0.0
-
     for i in range(prediction.shape[-1]):
         ious = []
         for j in range(prediction.shape[0]):
-            
             y_prediction = prediction[j,:,:,i]
             y_true = ground_truth[j,:,:,i]
-            y_pred_class = tf.cast(y_prediction > threshold, tf.float32)
-            ious.append(iou_metric(y_pred_class.numpy(), y_true.numpy()))
-
+            m = tf.keras.metrics.BinaryIoU( target_class_ids= target_class_ids, threshold= threshold)            
+            m.update_state(y_true, y_prediction)
+            ious.append(m.result().numpy())
+            
         ious_per_class.append(np.round(ious,2))
         iou_per_class.append(np.round(sum(ious)/len(ious),2))
     MIoU = sum(iou_per_class)/len(iou_per_class)
     
-    return np.round(MIoU, 2), iou_per_class, ious_per_class
+    return np.round(MIoU,2), iou_per_class, ious_per_class

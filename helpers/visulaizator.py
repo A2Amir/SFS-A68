@@ -3,8 +3,6 @@
 
 # In[38]:
 
-from PIL import Image
-from skimage import data
 from skimage.filters import threshold_otsu
 import numpy as np
 import matplotlib.pyplot as plt
@@ -26,7 +24,7 @@ def visulaize_inp_pred_gt(inp_img, prediction, ground_truth,
          ground_truth: (h, w, number of space function classes)
          seg_classes: Space Function Classes 
          pred_path: path to save prediction
-          name: name to visualize
+         name: name to visualize
          save: "True" means saving outputs in a RGB image and in channel format, "False" mean dont save.
               
 
@@ -87,10 +85,9 @@ def visulaize_inp_pred_gt(inp_img, prediction, ground_truth,
 
         tf.keras.utils.save_img(ch_path +'/' + 'rgb_input_groundTruth_pred' +'.jpg', save_image)
 
-        
         tf.keras.utils.save_img(ch_path +'/' + 'inp_image' + '.jpg', inp_img[:,:,:]*.5+.5)
         for k,item in seg_classes.items():
             plot_image = np.concatenate((ground_truth_chs[item.id-1], pred_chs[item.id-1]), axis=1)
-            tf.keras.utils.save_img(ch_path +'/' + 'gt_pred_chanenl'  + '_' + str(item.id) + '_' + item.name +'.jpg', plot_image)
+            tf.keras.utils.save_img(ch_path +'/' + 'gt_pred_chanenl'  + '_' + str(item.id) + '_' + item.name +'.bmp', plot_image)
 
     
