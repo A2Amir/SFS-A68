@@ -4,7 +4,43 @@
 # In[38]:
 import tensorflow as tf
 import numpy as np
+from keras import backend as K
 
+
+def f_measure(prediction, ground_truth, smooth=1):
+    
+    '''
+    F-Measure as a metric to quantify the quality of semantic segmentation
+    
+    Return:
+    
+        F-Measure for each class
+        Mean F-Measure  fo all clasess
+        
+    '''
+    assert (prediction.shape == ground_truth.shape)
+
+
+    f_Measure = []
+    mean_f_Measure = 0.0
+    
+    for i in range(prediction.shape[-1]):
+        y_pred = prediction[:,:,:,i]
+        y_true = ground_truth[:,:,:,i]
+        
+           
+        true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
+        possible_positives = K.sum(K.round(K.clip(y_true, 0, 1)))
+        recall = true_positives / (possible_positives + K.epsilon())
+        
+        predicted_positives = K.sum(K.round(K.clip(y_pred, 0, 1)))
+        precision = true_positives / (predicted_positives + K.epsilon())
+        
+        f_measure = 2*((precision*recall)/(precision+recall+K.epsilon())).numpy()
+        f_Measure.append( np.round(f_measure, 2))
+            
+    mean_f_Measure = sum(f_Measure)/len(f_Measure)
+    return  np.round(mean_f_Measure,2), f_Measure
 
 
 
