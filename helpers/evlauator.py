@@ -7,10 +7,60 @@ import numpy as np
 from keras import backend as K
 
 
-def f_measure(prediction, ground_truth, smooth=1):
+def total_error(prediction, ground_truth):
     
     '''
-    F-Measure as a metric to quantify the quality of semantic segmentation
+    Total error a metric to quantify the quality of semantic segmentation
+    
+             (FN+FP)/(FP+TP+TN+FN) 
+    
+    Return:
+    
+        Mean Total error
+        Total error for each class
+        Total errors for each class
+    '''
+    
+    ground_truth = ground_truth.numpy()
+    assert (prediction.shape == ground_truth.shape)
+
+    total_errors_per_class = []
+    total_error_per_class = []
+    Mtotal_error = 0.0
+
+    for i in range(ground_truth.shape[-1]):
+        total_errors = []
+        for j in range(ground_truth.shape[0]):
+
+            y_pred = prediction[j,:,:,i]
+            y_true = ground_truth[j,:,:,i]
+
+            y_pred = (y_pred > 0.5)
+
+            y_pred = y_pred.ravel()
+            y_true = y_true.ravel()
+
+            # True Positive (TP): we predict a label of 1 (positive), and the true label is 1.
+            TP = np.sum(np.logical_and(y_pred == 1, y_true == 1))  # True Negative (TN): we predict a label of 0 (negative), and the true label is 0.
+            TN = np.sum(np.logical_and(y_pred == 0, y_true == 0))  # False Positive (FP): we predict a label of 1 (positive), but the true label is 0.
+            FP = np.sum(np.logical_and(y_pred == 1, y_true == 0))  # False Negative (FN): we predict a label of 0 (negative), but the true label is 1.
+            FN = np.sum(np.logical_and(y_pred == 0, y_true == 1)) 
+
+            total_error = (FN+FP)/(FP+TP+TN+FN)
+            total_errors.append( total_error)
+
+        total_errors_per_class.append(np.round(total_errors,3))
+        total_error_per_class.append(np.round(sum(total_errors)/len(total_errors),3))
+    Mtotal_error = sum(total_error_per_class) / len(total_error_per_class)
+    
+    return np.round(Mtotal_error, 3), total_error_per_class, total_errors_per_class
+    
+
+
+def f1_measure(prediction, ground_truth, smooth=1):
+    
+    '''
+    F1-Measure as a metric to quantify the quality of semantic segmentation
     
     Return:
     
@@ -21,8 +71,8 @@ def f_measure(prediction, ground_truth, smooth=1):
     assert (prediction.shape == ground_truth.shape)
 
 
-    f_Measure = []
-    mean_f_Measure = 0.0
+    f1_Measure = []
+    mean_f1_Measure = 0.0
     
     for i in range(prediction.shape[-1]):
         y_pred = prediction[:,:,:,i]
@@ -36,11 +86,11 @@ def f_measure(prediction, ground_truth, smooth=1):
         predicted_positives = K.sum(K.round(K.clip(y_pred, 0, 1)))
         precision = true_positives / (predicted_positives + K.epsilon())
         
-        f_measure = 2*((precision*recall)/(precision+recall+K.epsilon())).numpy()
-        f_Measure.append( np.round(f_measure, 2))
+        f1_measure = 2*((precision*recall)/(precision+recall+K.epsilon())).numpy()
+        f1_Measure.append( np.round(f1_measure, 2))
             
-    mean_f_Measure = sum(f_Measure)/len(f_Measure)
-    return  np.round(mean_f_Measure,2), f_Measure
+    mean_f1_Measure = sum(f1_Measure)/len(f1_Measure)
+    return  np.round(mean_f1_Measure,2), f1_Measure
 
 
 

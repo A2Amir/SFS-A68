@@ -40,7 +40,7 @@ class segmentation_data(object):
             self.color = color
 
 
-## Space function classes
+# In[13]:
 
 
 
@@ -124,7 +124,7 @@ GroundTruthLayoutElements.create_node("SpaceFunctionClass", "Loggia", parent='Ex
 # In[399]:
 
 
-### Layout element classes
+# In[14]:
 
 
 InputLayoutElements = Tree()
