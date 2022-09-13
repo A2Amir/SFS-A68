@@ -4,6 +4,11 @@
   
 </div>
 
+<div align="center">
+
+### [Dowonlad SFS-A68 dataset](https://zenodo.org/record/6426871)
+</div>
+
 ### 1. Introduction:
 
 Analyzing building models for quantity takeoff, building safety, or energy analysis requires function classification data of spaces and related objects. Automated space function classification is desirable to reduce input model preparation effort and errors. This study addresses a gap in existing space function classification work, which is a lack of datasets to train and evaluate machine learning and deep learning models. We present the [SFS-A68 dataset](https://zenodo.org/record/6426871) for space function segmentation in apartment buildings. The dataset consists of input and ground truth images for 68 floor plans of apartment buildings designed or built between 1952 and 2019. 
