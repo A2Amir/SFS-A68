@@ -120,3 +120,7 @@ Verify that the new environment was installed correctly
 
 We first used the dataset to develop two segmentation models based on [transfer learning](https://github.com/A2Amir/SFS-A68/blob/main/VGG16%20U-Net%20(Transfer%20Learning).ipynb) and [training from scratch](https://github.com/A2Amir/SFS-A68/blob/main/Training%20U-Net%20From%20Scratch.ipynb) then, the outputs of the space function segmentation models for the test dataset are evaluated by Intersection over Union (IoU) and Total Error metrics. 
 
+### 4. Acknowledgments
+
+The authors gratefully acknowledge support by Grant Austrian Science Fund (FWF): I 5171-N, Mihael Barada, and participants in course '259.428-2021S Architectural Morphology' at TU Wien for data collection.
+
